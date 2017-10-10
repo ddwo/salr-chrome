@@ -27,7 +27,7 @@
 
 // Fetch extension settings
 var settings = {};
-var port = chrome.extension.connect({"name":"popup"});
+var port = browser.runtime.connect({"name":"popup"});
 
 /**
  * Opens a link in a tab.
@@ -37,7 +37,7 @@ function openTab(tabUrl) {
     if (button > 1)
         return;
     if (button == 0 && !event.ctrlKey) { // Left click
-        chrome.tabs.getSelected(null, function (tab) {
+        browser.tabs.query({active: true}).then(function (tab) {
             chrome.tabs.update(tab.id, {url: tabUrl});
             window.close();
         });

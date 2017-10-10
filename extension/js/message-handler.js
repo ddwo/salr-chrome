@@ -30,8 +30,8 @@
  *
  */
 
-if(chrome.extension.onConnectExternal != undefined) {
-    chrome.extension.onConnectExternal.addListener(function(port) {
+if(browser.runtime.onConnectExternal != undefined) {
+    browser.runtime.onConnectExternal.addListener(function(port) {
         port.onMessage.addListener(function(data) {
             switch (data.message) {
                 case 'GetForumsJumpList':
@@ -50,7 +50,7 @@ if(chrome.extension.onConnectExternal != undefined) {
  * Message event listener so that we can talk to the content-script
  *
  */
-chrome.extension.onConnect.addListener(function(port) {
+browser.runtime.onConnect.addListener(function(port) {
     port.onMessage.addListener(function(data) {
         switch (data.message) {
             case 'OpenSettings':
@@ -102,8 +102,8 @@ chrome.extension.onConnect.addListener(function(port) {
                 break;
             case 'AppendUploadedImage':
                 console.log('Got request!');
-                chrome.tabs.getSelected(null, function(tab) {
-                    chrome.tabs.sendMessage(tab.id, data, function(response) {
+				browser.tabs.query({active: true}).then( function(tab) {
+						chrome.tabs.sendMessage(tab.id, data, function(response) {
                         console.log(response.farewell);
                     });
                 });
@@ -120,7 +120,7 @@ chrome.extension.onConnect.addListener(function(port) {
                 break;
             case 'ConvertSettings':
                 chrome.management.get("nlcklobeoigfjmcigmhbjkepmniladed", function(result) {
-                    var salr = chrome.extension.connect("nlcklobeoigfjmcigmhbjkepmniladed");
+                    var salr = browser.runtime.connect("nlcklobeoigfjmcigmhbjkepmniladed");
                     salr.onMessage.addListener(function(data) {
                         localStorage.setItem('userNotes',data.userNotes);
                         localStorage.setItem('threadNotes', data.threadNotes);
