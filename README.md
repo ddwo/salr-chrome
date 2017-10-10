@@ -1,7 +1,7 @@
-Something Awful Last Read Redux Extension for Chrome
+Something Awful Last Read Redux Extension for Chrome for Firefox
 ==============================================
 
-This is a port of the SALR extension for Firefox to Google Chrome. It adds a number of improvements to the Something Awful Forums on Chrome.
+This is a port of the SALR extension for Firefox to Google Chrome to Firefox. It adds a number of improvements to the Something Awful Forums on Firefox.
 
 Installation
 ------------
